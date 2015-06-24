@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace EmailExtrapolator
 {
@@ -13,23 +15,12 @@ namespace EmailExtrapolator
 			string line;
 
 			//This takes data from clipboard and adds it to input one line at a time.
-			//You Must write enter "end" or 3 blank lines to exit the loop.
-			int i = 0;
-			do {
+			//You Must write enter "end"
+			do 
+			{
 				line = Console.ReadLine ();
 				input += line + " ";
-				Console.WriteLine(line);
-				i = 0;
-				if (line == "")
-				{
-					//Console.WriteLine(i);
-					i++;
-				}
-				if (line == "end")
-				{
-					i = 4;
-				}
-			} while (i < 3);
+			} while (line == "end");
 
 			//Lists to store input words and emails
 			List<string> allData = new List<string> ();
@@ -68,6 +59,11 @@ namespace EmailExtrapolator
 						emails.Add (element);
 					}
 				}
+			}
+
+			using (StreamWriter outfile = new StreamWriter(".//emails.txt"))
+			{
+				outfile.Write(string.Join(" ", emails.ToArray() ));
 			}
 
 			//print string of emails separated by spaces
