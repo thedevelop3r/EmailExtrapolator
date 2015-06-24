@@ -20,7 +20,7 @@ namespace EmailExtrapolator
 			{
 				line = Console.ReadLine ();
 				input += line + " ";
-			} while (line == "end");
+			} while (line != "end");
 
 			//Lists to store input words and emails
 			List<string> allData = new List<string> ();
